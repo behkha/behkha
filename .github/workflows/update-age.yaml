@@ -1,0 +1,28 @@
+name: Update Age in README
+
+on:
+  schedule:
+    - cron: '0 0 * * *'  # every day at midnight UTC
+  workflow_dispatch:     # manual trigger
+
+jobs:
+  update-readme:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Calculate age and update README
+        run: |
+          BIRTHDATE="1997-04-12"
+          TODAY=$(date +%Y-%m-%d)
+          AGE=$(( $(date -d $TODAY +%s) - $(date -d $BIRTHDATE +%s) ))
+          AGE=$(( AGE / 31556952 ))
+
+          sed -i "s/{age}/$AGE/g" README.md
+
+      - name: Commit changes
+        run: |
+          git config --global user.name 'github-actions'
+          git config --global user.email 'github-actions@github.com'
+          git commit -am "Update age in README"
+          git push
