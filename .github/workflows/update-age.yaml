@@ -20,7 +20,7 @@ jobs:
 
           echo "Current Age: $AGE"
 
-          sed -i "s/{age}/$AGE/g" README.md
+          sed -i "s/\*\*[0-9]\+\*\*/**$AGE**/g" README.md
 
       - name: Commit and push changes
         run: |
