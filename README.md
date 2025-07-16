@@ -27,7 +27,7 @@ I'm passionate about crafting seamless user experiences using modern frontend te
 
 - 🔗 [@behkha](https://t.me/behkha) on Telegram
 - ✉️ behzadkhanlar@gmail.com
-- 💼 [LinkedIn]([https://linkedin.com/in/behzadkhanlar](https://www.linkedin.com/in/behkha/))
+- 💼 [LinkedIn](https://www.linkedin.com/in/behkha/)
 - 🧠 [GitHub](https://github.com/behkha)
 
 ---
