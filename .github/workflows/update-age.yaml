@@ -13,7 +13,7 @@ jobs:
 
       - name: Calculate age and update README
         run: |
-          BIRTHDATE="1997-04-12"
+          BIRTHDATE="1998-06-06"
           TODAY=$(date +%Y-%m-%d)
           AGE=$(( $(date -d $TODAY +%s) - $(date -d $BIRTHDATE +%s) ))
           AGE=$(( AGE / 31556952 ))
