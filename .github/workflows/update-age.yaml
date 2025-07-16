@@ -2,8 +2,9 @@ name: Update Age in README
 
 on:
   schedule:
-    - cron: '0 0 * * *'  # every day at midnight UTC
-  workflow_dispatch:     # manual trigger
+    - cron: '0 0 6 6 *'     # (your birthday)
+    - cron: '0 0 1 1 *'     # Optional: every Jan 1 as a fallback
+  workflow_dispatch:        # Allows manual runs
 
 jobs:
   update-readme:
@@ -15,14 +16,14 @@ jobs:
         run: |
           BIRTHDATE="1998-06-06"
           TODAY=$(date +%Y-%m-%d)
-          AGE=$(( $(date -d $TODAY +%s) - $(date -d $BIRTHDATE +%s) ))
-          AGE=$(( AGE / 31556952 ))
+          AGE=$(( ( $(date -d "$TODAY" +%s) - $(date -d "$BIRTHDATE" +%s) ) / 31556952 ))
+
+          echo "Current Age: $AGE"
 
           sed -i "s/{age}/$AGE/g" README.md
 
-      - name: Commit changes
+      - name: Commit and push changes
         run: |
           git config --global user.name 'github-actions'
           git config --global user.email 'github-actions@github.com'
-          git commit -am "Update age in README"
-          git push
+          git diff --quiet || (git commit -am "Update age in README" && git push)
